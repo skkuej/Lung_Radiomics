@@ -42,8 +42,8 @@ pt_list=os.listdir(pt_path)
 results_pd=pd.DataFrame([])
 for i in pt_list:
     ## Load the image and ROI data
-    img=sitk.ReadImage(save_root+str(i)+'\\'+str(i)+'.img')   
-    roi=sitk.ReadImage(save_root+str(i)+'\\'+str(i)+'roi.nii') # tumoral ROI, peri_tumoral ROI
+    img=sitk.ReadImage(save_root+str(i)+'/'+str(i)+'.img')   
+    roi=sitk.ReadImage(save_root+str(i)+'/'+str(i)+'roi.nii') # tumoral ROI, peri_tumoral ROI
     roi_np=sitk.GetArrayFromImage(roi)
     
     ## ROI data to be binary 
@@ -56,5 +56,5 @@ for i in pt_list:
     results_pd=pd.concat([results_pd,results],axis=0)
 
 ## Save the GLSZM features to a csv file    
-results_pd.to_csv(r'X:\ejkim\szm\comp\icc_szm_intra.csv')
+results_pd.to_csv(os.path.join(save_root+'/glszm_features.csv'))
 
