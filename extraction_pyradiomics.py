@@ -1,8 +1,16 @@
+
+/*******************************************************
+ * Copyright (C) 2019-2022 Eunjin Kim, Hwanho Cho <dmswlskim970606@gmail.com, nara9313@gmail.com>
+ * 
+ * This file is part of Radiomics Based on Lung Adenocarcinoma for Survival Analysis Project.
+ * 
+ * Radiomics Based on Lung Adenocarcinoma for Survival Analysis Project can not be copied and/or distributed without the express
+ * permission of EJK and HHC
+ *******************************************************/
+
+
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[ ]:
-
 
 import os
 import numpy as np
