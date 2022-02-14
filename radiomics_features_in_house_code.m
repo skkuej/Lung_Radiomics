@@ -120,7 +120,7 @@ for ii= 3:length(flist)
     
 
 %% Check and save the overlay of Image and tumor ROI
-    new_fpath = strcat('X:\ejkim\szm\0220_re\0220\data\revision_MP4\',flist(ii).name,'\');
+    new_fpath = strcat('/home/data_path/',flist(ii).name,'/');
     cd(new_fpath)
     figure_path_pat =  new_fpath;
     
@@ -171,21 +171,21 @@ for ii= 3:length(flist)
     
     %% GLCM features
     % Whole GLCM
-    feature_GLCM = rad_GLCM(image,roi,pat_num,figure_path_pat,'CT',256);
+    feature_GLCM = rad_GLCM(image,roi,pat_num,figure_path_pat,'CT',128);
     
     % Whole GLCM in/out/delta features
     img2 = image.img;
-    feature_GLCM_diff = rad_GLCM_iod(img2,roi_inner_core,roi_outer_core,pat_num,figure_path_pat,'CT',256);
+    feature_GLCM_diff = rad_GLCM_iod(img2,roi_inner_core,roi_outer_core,pat_num,figure_path_pat,'CT',128);
     
     %Subsampling GLCM (Added for CT lung radiomics, 20171226)
     t1_sub = image.img(1:3:end, 1:3:end, 1:3:end);
     roi_sub = roi.img(1:3:end, 1:3:end, 1:3:end);
-    feature_GLCM_sub = rad_GLCM_sub(t1_sub,roi_sub,pat_num,figure_path_pat,'CT',256);
+    feature_GLCM_sub = rad_GLCM_sub(t1_sub,roi_sub,pat_num,figure_path_pat,'CT',128);
     
     %Subsampling GLCM in/out/delta features
     roi_in_sub = roi_inner_core(1:3:end, 1:3:end, 1:3:end);
     roi_out_sub = roi_outer_core(1:3:end, 1:3:end, 1:3:end);
-    feature_GLCM_sub_diff = rad_GLCM_iod_sub(t1_sub,roi_in_sub,roi_out_sub,pat_num,figure_path_pat,'CT',256);
+    feature_GLCM_sub_diff = rad_GLCM_iod_sub(t1_sub,roi_in_sub,roi_out_sub,pat_num,figure_path_pat,'CT',128);
     
     %% 3-D LoG features
     cd(fpath);
@@ -201,9 +201,9 @@ for ii= 3:length(flist)
         idxn = find(roi_log.img == (-2047));
         roi_log.img(idxm) = 1;
         roi_log.img(idxn) = 0;
-    elseif roi_log.hdr.dime.glmin == (-4047)
-        idxm = find(roi_log.img > (-4047));
-        idxn = find(roi_log.img == (-4047));
+    elseif roi_log.hdr.dime.glmin == (-4095)
+        idxm = find(roi_log.img > (-4095));
+        idxn = find(roi_log.img == (-4095));
         roi_log.img(idxm) = 1;
         roi_log.img(idxn) = 0;
     elseif roi_log.hdr.dime.glmin == (-1000)
@@ -374,9 +374,9 @@ for ii= 3:length(flist)
         roi_fd.img(idxm) = 1;
         roi_fd.img(idxn) = 0;
         
-    elseif roi_fd.hdr.dime.glmin == (-4047)
-        idxm = find(roi_fd.img > (-4047));
-        idxn = find(roi_fd.img == (-4047));
+    elseif roi_fd.hdr.dime.glmin == (-4095)
+        idxm = find(roi_fd.img > (-4095));
+        idxn = find(roi_fd.img == (-4095));
         roi_fd.img(idxm) = 1;
         roi_fd.img(idxn) = 0;
         
