@@ -162,9 +162,7 @@ for ii= 3:length(flist)
     %% HISTOGRAM features
     % Whole HISTOGRAM features
     feature_HIST = rad_HIST(image,roi,pat_num,figure_path_pat,'CT',4096);
-    
-    % HISTOGRAM positive pixel features
-    feature_HIST_pp = rad_HIST_pp(t1,roi,pat_num,figure_path_pat,'CT',3072);
+  
     
     % HISTOGRAM inner/outer/delta features
     feature_HIST_diff = rad_HIST_iod(image,roi_inner_core,roi_outer_core,pat_num,figure_path_pat,'CT',4096);
